@@ -1,3 +1,7 @@
+library(shiny)
+library(scales)
+library(ggplot2)
+
 shinyServer(
   function(input, output) {
     
