@@ -1,8 +1,33 @@
 shinyServer(
   function(input, output) {
     
-    assignmentArableLand <- read.csv("~/R Projects/InteractiveVisualisation/Assignment/data/arableland.csv")
-    assignmentLandUse <- read.csv("~/R Projects/InteractiveVisualisation/Assignment/data/LandUse.csv")
+    #assignmentArableLand <- read.csv("~/R Projects/InteractiveVisualisation/Assignment/data/arableland.csv")
+    #assignmentLandUse <- read.csv("~/R Projects/InteractiveVisualisation/Assignment/data/LandUse.csv")
+    
+    assignmentArableLand <-NULL
+    assignmentLandUse <- NULL
+    if(is.null(assignmentArableLand))
+    {
+      link<-"https://raw.githubusercontent.com/ahal64/FIT2079/master/data/arableland.csv"
+      assignmentArableLand<-read.csv(link)
+      if(is.null(assignmentArableLand))
+      {
+        assignmentArableLand<-read.csv(url(link))
+      }
+
+       
+    }
+    if(is.null(assignmentLandUse))
+    {
+      link2<-"https://raw.githubusercontent.com/ahal64/FIT2079/master/data/LandUse.csv"
+      assignmentLandUse<-read.csv(link2)
+      if(is.null(assignmentLandUse))
+      {
+        assignmentLandUse<-read.csv(url(link2))
+      }
+      
+    }
+    
     
     output$graph<- renderPlot({
         colourChoice<-input$colour
